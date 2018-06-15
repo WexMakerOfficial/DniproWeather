@@ -1,0 +1,6 @@
+framework module Pods_DniproWeatherTests {
+  umbrella header "Pods-DniproWeatherTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

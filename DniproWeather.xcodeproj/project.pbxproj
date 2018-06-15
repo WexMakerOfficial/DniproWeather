@@ -13,6 +13,8 @@
 		1B9CF7DE20D457DC006CAFAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B9CF7DD20D457DC006CAFAF /* Assets.xcassets */; };
 		1B9CF7E120D457DC006CAFAF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B9CF7DF20D457DC006CAFAF /* LaunchScreen.storyboard */; };
 		1B9CF7EC20D457DC006CAFAF /* DniproWeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9CF7EB20D457DC006CAFAF /* DniproWeatherTests.swift */; };
+		732E3872FE7409CFE5179B14 /* Pods_DniproWeatherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C19AB6C22AAB3FE59F10D58 /* Pods_DniproWeatherTests.framework */; };
+		FE4F74978F8DDF898A279DAF /* Pods_DniproWeather.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BCCF54FF7976E31F3E0557F /* Pods_DniproWeather.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,12 @@
 		1B9CF7E720D457DC006CAFAF /* DniproWeatherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DniproWeatherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B9CF7EB20D457DC006CAFAF /* DniproWeatherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DniproWeatherTests.swift; sourceTree = "<group>"; };
 		1B9CF7ED20D457DC006CAFAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2AD0946C15540F4E66D1FCC7 /* Pods-DniproWeatherTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DniproWeatherTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DniproWeatherTests/Pods-DniproWeatherTests.debug.xcconfig"; sourceTree = "<group>"; };
+		4E3772C62AEB8043C3F7BF7C /* Pods-DniproWeatherTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DniproWeatherTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DniproWeatherTests/Pods-DniproWeatherTests.release.xcconfig"; sourceTree = "<group>"; };
+		6C19AB6C22AAB3FE59F10D58 /* Pods_DniproWeatherTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DniproWeatherTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7BCCF54FF7976E31F3E0557F /* Pods_DniproWeather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DniproWeather.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE40653097D5434A459B9A37 /* Pods-DniproWeather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DniproWeather.release.xcconfig"; path = "Pods/Target Support Files/Pods-DniproWeather/Pods-DniproWeather.release.xcconfig"; sourceTree = "<group>"; };
+		DC4997DCFCFF6C0159CA2C69 /* Pods-DniproWeather.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DniproWeather.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DniproWeather/Pods-DniproWeather.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE4F74978F8DDF898A279DAF /* Pods_DniproWeather.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,18 +59,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				732E3872FE7409CFE5179B14 /* Pods_DniproWeatherTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		00306184689B753CDA5C4217 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7BCCF54FF7976E31F3E0557F /* Pods_DniproWeather.framework */,
+				6C19AB6C22AAB3FE59F10D58 /* Pods_DniproWeatherTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		1B9CF7CA20D457D8006CAFAF = {
 			isa = PBXGroup;
 			children = (
 				1B9CF7D520D457D8006CAFAF /* DniproWeather */,
 				1B9CF7EA20D457DC006CAFAF /* DniproWeatherTests */,
 				1B9CF7D420D457D8006CAFAF /* Products */,
+				72F88A6CAAAF1507FF163EBC /* Pods */,
+				00306184689B753CDA5C4217 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -96,6 +117,17 @@
 			path = DniproWeatherTests;
 			sourceTree = "<group>";
 		};
+		72F88A6CAAAF1507FF163EBC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DC4997DCFCFF6C0159CA2C69 /* Pods-DniproWeather.debug.xcconfig */,
+				CE40653097D5434A459B9A37 /* Pods-DniproWeather.release.xcconfig */,
+				2AD0946C15540F4E66D1FCC7 /* Pods-DniproWeatherTests.debug.xcconfig */,
+				4E3772C62AEB8043C3F7BF7C /* Pods-DniproWeatherTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -103,9 +135,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1B9CF7F020D457DC006CAFAF /* Build configuration list for PBXNativeTarget "DniproWeather" */;
 			buildPhases = (
+				E9302BD2E6FBB391E4DFCC45 /* [CP] Check Pods Manifest.lock */,
 				1B9CF7CF20D457D8006CAFAF /* Sources */,
 				1B9CF7D020D457D8006CAFAF /* Frameworks */,
 				1B9CF7D120D457D8006CAFAF /* Resources */,
+				CF17F4D51AB3092A84AB552B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -120,9 +154,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1B9CF7F320D457DC006CAFAF /* Build configuration list for PBXNativeTarget "DniproWeatherTests" */;
 			buildPhases = (
+				B6503AE889E9ED4279B0ACF7 /* [CP] Check Pods Manifest.lock */,
 				1B9CF7E320D457DC006CAFAF /* Sources */,
 				1B9CF7E420D457DC006CAFAF /* Frameworks */,
 				1B9CF7E520D457DC006CAFAF /* Resources */,
+				FA2F37DF74948F4B795706C8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -191,6 +227,87 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B6503AE889E9ED4279B0ACF7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DniproWeatherTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CF17F4D51AB3092A84AB552B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-DniproWeather/Pods-DniproWeather-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS11.0/RxSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DniproWeather/Pods-DniproWeather-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E9302BD2E6FBB391E4DFCC45 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DniproWeather-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FA2F37DF74948F4B795706C8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-DniproWeatherTests/Pods-DniproWeatherTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS11.4/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxBlocking/RxBlocking.framework",
+				"${BUILT_PRODUCTS_DIR}/RxTest/RxTest.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxBlocking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxTest.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DniproWeatherTests/Pods-DniproWeatherTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1B9CF7CF20D457D8006CAFAF /* Sources */ = {
@@ -356,15 +473,14 @@
 		};
 		1B9CF7F120D457DC006CAFAF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DC4997DCFCFF6C0159CA2C69 /* Pods-DniproWeather.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MFVF92WP4G;
 				INFOPLIST_FILE = DniproWeather/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wexMaker.DniproWeather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -374,15 +490,14 @@
 		};
 		1B9CF7F220D457DC006CAFAF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CE40653097D5434A459B9A37 /* Pods-DniproWeather.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MFVF92WP4G;
 				INFOPLIST_FILE = DniproWeather/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wexMaker.DniproWeather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -392,17 +507,14 @@
 		};
 		1B9CF7F420D457DC006CAFAF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2AD0946C15540F4E66D1FCC7 /* Pods-DniproWeatherTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MFVF92WP4G;
 				INFOPLIST_FILE = DniproWeatherTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wexMaker.DniproWeatherTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -413,17 +525,14 @@
 		};
 		1B9CF7F520D457DC006CAFAF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4E3772C62AEB8043C3F7BF7C /* Pods-DniproWeatherTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MFVF92WP4G;
 				INFOPLIST_FILE = DniproWeatherTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wexMaker.DniproWeatherTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
