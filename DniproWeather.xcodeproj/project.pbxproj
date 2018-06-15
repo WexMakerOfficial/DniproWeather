@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1B9CF7D720D457D8006CAFAF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9CF7D620D457D8006CAFAF /* AppDelegate.swift */; };
-		1B9CF7D920D457D8006CAFAF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9CF7D820D457D8006CAFAF /* ViewController.swift */; };
+		1B9CF7D920D457D8006CAFAF /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9CF7D820D457D8006CAFAF /* Main.swift */; };
 		1B9CF7DC20D457D8006CAFAF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B9CF7DA20D457D8006CAFAF /* Main.storyboard */; };
 		1B9CF7DE20D457DC006CAFAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B9CF7DD20D457DC006CAFAF /* Assets.xcassets */; };
 		1B9CF7E120D457DC006CAFAF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B9CF7DF20D457DC006CAFAF /* LaunchScreen.storyboard */; };
@@ -30,7 +30,7 @@
 /* Begin PBXFileReference section */
 		1B9CF7D320D457D8006CAFAF /* DniproWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DniproWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B9CF7D620D457D8006CAFAF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1B9CF7D820D457D8006CAFAF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1B9CF7D820D457D8006CAFAF /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		1B9CF7DB20D457D8006CAFAF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1B9CF7DD20D457DC006CAFAF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1B9CF7E020D457DC006CAFAF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -75,6 +75,48 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		1B06785D20D45BE0003FC16C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1B06786020D45C19003FC16C /* Main */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1B06785E20D45BEC003FC16C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1B06785F20D45BFA003FC16C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		1B06786020D45C19003FC16C /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				1B9CF7DA20D457D8006CAFAF /* Main.storyboard */,
+				1B9CF7D820D457D8006CAFAF /* Main.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		1B06786120D45C26003FC16C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1B9CF7DD20D457DC006CAFAF /* Assets.xcassets */,
+				1B9CF7D620D457D8006CAFAF /* AppDelegate.swift */,
+				1B9CF7DF20D457DC006CAFAF /* LaunchScreen.storyboard */,
+				1B9CF7E220D457DC006CAFAF /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		1B9CF7CA20D457D8006CAFAF = {
 			isa = PBXGroup;
 			children = (
@@ -98,12 +140,10 @@
 		1B9CF7D520D457D8006CAFAF /* DniproWeather */ = {
 			isa = PBXGroup;
 			children = (
-				1B9CF7D620D457D8006CAFAF /* AppDelegate.swift */,
-				1B9CF7D820D457D8006CAFAF /* ViewController.swift */,
-				1B9CF7DA20D457D8006CAFAF /* Main.storyboard */,
-				1B9CF7DD20D457DC006CAFAF /* Assets.xcassets */,
-				1B9CF7DF20D457DC006CAFAF /* LaunchScreen.storyboard */,
-				1B9CF7E220D457DC006CAFAF /* Info.plist */,
+				1B06785E20D45BEC003FC16C /* Model */,
+				1B06785D20D45BE0003FC16C /* View */,
+				1B06785F20D45BFA003FC16C /* ViewModel */,
+				1B06786120D45C26003FC16C /* Resources */,
 			);
 			path = DniproWeather;
 			sourceTree = "<group>";
@@ -254,11 +294,19 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-DniproWeather/Pods-DniproWeather-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${BUILT_PRODUCTS_DIR}/ChartsRealm/ChartsRealm.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS11.0/RxSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChartsRealm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 			);
@@ -314,7 +362,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B9CF7D920D457D8006CAFAF /* ViewController.swift in Sources */,
+				1B9CF7D920D457D8006CAFAF /* Main.swift in Sources */,
 				1B9CF7D720D457D8006CAFAF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -478,7 +526,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MFVF92WP4G;
-				INFOPLIST_FILE = DniproWeather/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/DniproWeather/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wexMaker.DniproWeather;
@@ -495,7 +543,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MFVF92WP4G;
-				INFOPLIST_FILE = DniproWeather/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/DniproWeather/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wexMaker.DniproWeather;
