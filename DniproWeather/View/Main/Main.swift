@@ -7,12 +7,18 @@
 //
 
 import UIKit
+import Charts
 
 class Main: UIViewController {
 
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var chartView: LineChartView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    }
+    @IBAction func reloadWithSegment(_ sender: UISegmentedControl) {
     }
 }
 
