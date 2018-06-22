@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+
 class WeatherCollectionViewCell: UICollectionViewCell {
 
     //MARK: IBOutlet:
@@ -26,7 +27,7 @@ class WeatherCollectionViewCell: UICollectionViewCell {
             viewModel.averageTemp.bind(to: tempLabel.rx.text).disposed(by: disposeBag)
             viewModel.minMaxTemp.bind(to: tempMinMaxLabel.rx.text).disposed(by: disposeBag)
             viewModel.windSpeed.bind(to: windSpeedLabel.rx.text).disposed(by: disposeBag)
-            viewModel.averageTemp.bind(to: dateTimeLabel.rx.text).disposed(by: disposeBag)
+            viewModel.humidity.bind(to: humidityLabel.rx.text).disposed(by: disposeBag)
         }
     }
     

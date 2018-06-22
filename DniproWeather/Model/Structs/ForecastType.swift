@@ -8,6 +8,6 @@
 
 import Foundation
 
-enum ForecastType {
-    case hours, days
+enum ForecastType: Int {
+    case hours = 0, days = 1
 }

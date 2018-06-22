@@ -25,16 +25,13 @@
                                     <segment title="7 Days"/>
                                 </segments>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <action selector="reloadWithSegment:" destination="BYZ-38-t0r" eventType="valueChanged" id="3mR-bI-QXu"/>
-                                </connections>
                             </segmentedControl>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="djC-P1-91A" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="18.5" y="380" width="337.5" height="233.5"/>
+                                <rect key="frame" x="18.5" y="326.5" width="337.5" height="287"/>
                                 <color key="backgroundColor" red="0.0" green="0.70132797960000004" blue="0.63560593129999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Kis-0u-u3X">
-                                <rect key="frame" x="18.5" y="30" width="337.5" height="340"/>
+                                <rect key="frame" x="18.5" y="30" width="337.5" height="286.5"/>
                                 <color key="backgroundColor" red="0.99010258910000004" green="0.36888414619999998" blue="0.34246402980000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="CSb-Ga-Phv">
                                     <size key="itemSize" width="50" height="50"/>
@@ -58,13 +55,15 @@
                             <constraint firstItem="djC-P1-91A" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Vzn-t1-3ua"/>
                             <constraint firstItem="glV-4C-Svf" firstAttribute="top" secondItem="djC-P1-91A" secondAttribute="bottom" constant="10" id="lyk-IJ-6ZV"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="glV-4C-Svf" secondAttribute="bottom" constant="10" id="nBx-ia-cEz"/>
-                            <constraint firstItem="djC-P1-91A" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.35" id="rXW-aa-HU4"/>
+                            <constraint firstItem="djC-P1-91A" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.43" id="rXW-aa-HU4"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="chartView" destination="djC-P1-91A" id="RKu-KW-jjh"/>
+                        <outlet property="collectionLayout" destination="CSb-Ga-Phv" id="sol-eh-t35"/>
                         <outlet property="collectionView" destination="Kis-0u-u3X" id="XCM-QL-UKY"/>
+                        <outlet property="segmentedControl" destination="glV-4C-Svf" id="164-oI-JfB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

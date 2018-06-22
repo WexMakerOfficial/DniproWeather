@@ -18,15 +18,26 @@ class WeatherManager {
     }
     
     //MARK: public funcs
-    func getWeatherList () -> [Weather] {
+    func getWeatherListFromAPI (with type: ForecastType ,completeion: (_ forecast: [Weather]) -> Void) {
         var weathers = [Weather]()
-        for _ in 0..<5 {
-            weathers.append(Weather())
+        switch type {
+        case .days:
+            for _ in 0..<5 {
+                let weather = Weather()
+                weather.temp = Int(arc4random_uniform(40))
+                weathers.append(weather)
+            }
+        case .hours:
+            for _ in 0..<3 {
+                let weather = Weather()
+                weather.temp = Int(arc4random_uniform(40))
+                weathers.append(weather)
+            }
         }
-        return weathers
+        completeion(weathers)
     }
-    //MARK: private funcs
-    private func getWeatherFromDB () -> [Weather] {
+    
+    func getWeatherFromDB () -> [Weather] {
         if let array = realm?.objects(Weather.self) {
             return array.reversed()
         } else {
@@ -34,6 +45,7 @@ class WeatherManager {
         }
     }
     
+    //MARK: private funcs
     private func getFromApi (_ type: ForecastType) -> [Weather] {
         return []
     }
