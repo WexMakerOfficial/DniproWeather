@@ -17,6 +17,7 @@ PODS:
   - RxSwift (4.1.2)
   - RxTest (4.1.2):
     - RxSwift (~> 4.0)
+  - SwiftyJSON (4.0.0)
 
 DEPENDENCIES:
   - ChartsRealm
@@ -24,6 +25,7 @@ DEPENDENCIES:
   - RxCocoa (~> 4.0)
   - RxSwift (~> 4.0)
   - RxTest (~> 4.0)
+  - SwiftyJSON (~> 4.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -35,6 +37,7 @@ SPEC REPOS:
     - RxCocoa
     - RxSwift
     - RxTest
+    - SwiftyJSON
 
 SPEC CHECKSUMS:
   Charts: 45cdc985b764c838b35ee47eb1365d15735f6d1a
@@ -45,7 +48,8 @@ SPEC CHECKSUMS:
   RxCocoa: d88ba0f1f6abf040011a9eb4b539324fc426843a
   RxSwift: e49536837d9901277638493ea537394d4b55f570
   RxTest: e634f15fd2c2cd0e0120132ef7a4f7be69ad0393
+  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: 64aeb37516082d23a320c8470c335c5c09f76f27
+PODFILE CHECKSUM: 8c4b611932a0607e8ae8b2858be772c2c1b47576
 
 COCOAPODS: 1.5.3
