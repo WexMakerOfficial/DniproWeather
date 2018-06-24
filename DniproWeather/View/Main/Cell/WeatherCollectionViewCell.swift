@@ -33,7 +33,8 @@ class WeatherCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        backgroundColor = UIColor(red: 0.99, green: 0.37, blue: 0.34, alpha: 1)
+        layer.cornerRadius = 10
     }
 
 }

@@ -9,6 +9,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import Charts
 
 class MainViewModel {
     
@@ -16,7 +17,8 @@ class MainViewModel {
     var cellArray = BehaviorRelay<[WeatherCVCellViewModel]>(value: [])
     private var forecast : BehaviorRelay<[Weather]> = BehaviorRelay(value: [])
     var forecastType = BehaviorRelay<ForecastType>(value: .days)
-    var chartPoints = BehaviorRelay<[Double]>(value: [])
+    var chartDataSet = BehaviorRelay<LineChartDataSet>(value: LineChartDataSet(values: [], label: "temp"))
+    var moveTo = BehaviorRelay<Int>(value: 0)
     
     let disposeBag = DisposeBag()
     
@@ -26,7 +28,7 @@ class MainViewModel {
             .subscribe { [weak self] (tempForecast) in
                 guard let realForecast = tempForecast.element, let strongSelf = self else { return }
                 strongSelf.cellArray.accept(strongSelf.getCells(with: realForecast, type: strongSelf.forecastType.value))
-                strongSelf.chartPoints.accept(strongSelf.getChartPoints(with: realForecast))
+                strongSelf.chartDataSet.accept(strongSelf.getChartDataSet(with: realForecast))
             }
             .disposed(by: disposeBag)
     
@@ -47,6 +49,10 @@ class MainViewModel {
             .disposed(by: disposeBag)
     }
     
+    func selectEntry (_ entry: ChartDataEntry) {
+        moveTo.accept(chartDataSet.value.entryIndex(entry: entry) * 100)
+    }
+    
     //MARK: private func
     private func getCells(with weathers: [Weather], type: ForecastType) -> [WeatherCVCellViewModel] {
         var forecast = [WeatherCVCellViewModel]()
@@ -56,12 +62,15 @@ class MainViewModel {
         return forecast
     }
     
-    private func getChartPoints (with weathers: [Weather]) -> [Double] {
-        var points = [Double]()
+    private func getChartDataSet (with weathers: [Weather]) -> LineChartDataSet {
+        var entrys = [ChartDataEntry]()
+        var x : Double = 0
         for weather in weathers {
-            points.append(Double(weather.temp))
+            x += 50
+            entrys.append(ChartDataEntry(x: x, y: Double(weather.temp)))
         }
-        return points
+        let dataset = LineChartDataSet(values: entrys, label: "temp")
+        return dataset
     }
     
 }

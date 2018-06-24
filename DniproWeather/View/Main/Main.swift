@@ -28,7 +28,7 @@ class Main: UIViewController {
         
         collectionLayout.itemSize = CGSize(width: 100, height: collectionView.bounds.size.height * 0.8)
         collectionView.register(UINib(nibName: "WeatherCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "cell")
-        
+        setupChartView()
         viewModel.cellArray.asDriver().drive(collectionView.rx.items(cellIdentifier: "cell")) {_, viewModel, cell in
             guard let weatherCell = cell as? WeatherCollectionViewCell else { return }
             weatherCell.viewModel = viewModel
@@ -39,22 +39,51 @@ class Main: UIViewController {
             self?.viewModel.forecastType.accept(currentType)
         }.disposed(by: disposebag)
         
-        viewModel.chartPoints.subscribe { [weak self] (event) in
-            guard let points = event.element else { return }
-            self?.chartSet(points)
+        viewModel.chartDataSet.subscribe { [weak self] (event) in
+            guard let dataSet = event.element else { return }
+            self?.chartSet(dataSet)
+        }.disposed(by: disposebag)
+        
+
+        viewModel.moveTo.asDriver().drive { (observableX) in
+            observableX.subscribe({ [weak self] (event) in
+                guard let strongSelf = self else { return }
+                guard let x = event.element else { return }
+                let middle = Int(strongSelf.collectionView.bounds.width / 2 - 50 - 20)
+                strongSelf.collectionView.setContentOffset(CGPoint(x: x - middle, y: 0), animated: true)
+            })
         }.disposed(by: disposebag)
         
     }
     
-    private func chartSet (_ points: [Double]) {
-        var entrys = [ChartDataEntry]()
-        var x : Double = 0
-        for point in points {
-            x += 50
-            entrys.append(ChartDataEntry(x: x, y: point))
-        }
-        let dataset = LineChartDataSet(values: entrys, label: "test")
-        let data = LineChartData(dataSet: dataset)
+    private func chartSet (_ dataSet: LineChartDataSet) {
+        let gradientColors = [ChartColorTemplates.colorFromString("#00ff0000").cgColor,
+                              ChartColorTemplates.colorFromString("#ffff0000").cgColor]
+        let gradient = CGGradient(colorsSpace: nil, colors: gradientColors as CFArray, locations: nil)!
+        dataSet.fillAlpha = 1
+        dataSet.fill = Fill(linearGradient: gradient, angle: 90)
+        dataSet.drawFilledEnabled = true
+        let data = LineChartData(dataSet: dataSet)
         chartView.data = data
+        chartView.animate(xAxisDuration: 0.4)
+    }
+    
+    private func setupChartView () {
+        chartView.delegate = self
+        chartView.chartDescription?.text = "Forecast"
+        chartView.leftAxis.enabled = false
+        chartView.leftAxis.spaceTop = 0.4
+        chartView.leftAxis.spaceBottom = 0.4
+        chartView.leftAxis.drawZeroLineEnabled = false
+        chartView.rightAxis.enabled = false
+        chartView.xAxis.enabled = false
+        chartView.leftAxis.drawGridLinesEnabled = false
+        chartView.leftAxis.labelPosition = .outsideChart
+    }
+}
+
+extension Main: ChartViewDelegate {
+    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
+        viewModel.selectEntry(entry)
     }
 }
