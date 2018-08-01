@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 
 class Weather: Object {
-    @objc dynamic var dateTimeUnix = "1529245812"
+    @objc dynamic var dateTimeUnix: Double = 1529245812
     @objc dynamic var temp = 0
     @objc dynamic var tempMax = 0
     @objc dynamic var tempMin = 0

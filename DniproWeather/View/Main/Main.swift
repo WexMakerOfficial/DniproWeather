@@ -39,9 +39,11 @@ class Main: UIViewController {
             self?.viewModel.forecastType.accept(currentType)
         }.disposed(by: disposebag)
         
-        viewModel.chartDataSet.subscribe { [weak self] (event) in
-            guard let dataSet = event.element else { return }
-            self?.chartSet(dataSet)
+        viewModel.chartDataSet.asDriver().drive {
+            $0.subscribe { [weak self] in
+                guard let dataSet = $0.element else { return }
+                self?.chartSet(dataSet)
+            }
         }.disposed(by: disposebag)
         
 

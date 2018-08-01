@@ -5,6 +5,7 @@ target 'DniproWeather' do
     pod 'RxCocoa',    '~> 4.0'
     pod 'ChartsRealm'
     pod 'SwiftyJSON', '~> 4.0'
+    pod 'RxAlamofire'
 end
 
 # RxTest and RxBlocking make the most sense in the context of unit/integration tests

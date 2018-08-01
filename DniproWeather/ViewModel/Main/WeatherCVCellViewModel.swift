@@ -21,7 +21,7 @@ class WeatherCVCellViewModel {
     
     init(_ weather: Weather, type: ForecastType) {
         let dateFormater = DateFormatter()
-        dateFormater.timeZone = TimeZone(secondsFromGMT: 3)
+        dateFormater.timeZone = TimeZone(secondsFromGMT: 10800)
         switch type {
         case .days:
             dateFormater.dateStyle = .short
@@ -32,7 +32,7 @@ class WeatherCVCellViewModel {
             dateFormater.timeStyle = .short
             break
         }
-        let date = Date(timeIntervalSince1970: Double(weather.dateTimeUnix) ?? Date().timeIntervalSince1970)
+        let date = Date(timeIntervalSince1970: weather.dateTimeUnix)
         dateTime.onNext(dateFormater.string(from: date))
         averageTemp.onNext("\(weather.temp) ºC")
         minMaxTemp.onNext("\(weather.tempMin) ~ \(weather.tempMax) ºC")
