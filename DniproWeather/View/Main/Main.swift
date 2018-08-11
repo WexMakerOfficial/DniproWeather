@@ -19,37 +19,61 @@ class Main: UIViewController {
     @IBOutlet weak var collectionLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
+    
     //MARK: var
     var viewModel = MainViewModel()
     
-    //MARK: let
-    let disposebag = DisposeBag()
+    //MARK: private let
+    private let disposebag = DisposeBag()
+    
+    //MARK: private var
+    private var blurs: [UIVisualEffectView] = []
     
     //MARK: life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        collectionLayout.itemSize = CGSize(width: 100, height: collectionView.bounds.size.height * 0.8)
-        collectionView.register(UINib(nibName: "WeatherCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "cell")
-        setupChartView()
+        setupUI()
+        binding()
+    }
+    
+    //MARK: private func
+    private func binding() {
+        //bind collection view
         viewModel.cellArray.asDriver().drive(collectionView.rx.items(cellIdentifier: "cell")) {_, viewModel, cell in
             guard let weatherCell = cell as? WeatherCollectionViewCell else { return }
             weatherCell.viewModel = viewModel
-        }.disposed(by: disposebag)
+            }.disposed(by: disposebag)
         
+        //bind from segment
         self.segmentedControl.rx.selectedSegmentIndex.bind { [weak self] (index) in
             guard let currentType = ForecastType(rawValue: index) else { return }
             self?.viewModel.forecastType.accept(currentType)
-        }.disposed(by: disposebag)
+            }.disposed(by: disposebag)
         
+        //bind show load from segment
+        self.segmentedControl.rx.selectedSegmentIndex
+            .distinctUntilChanged()
+            .subscribe { [weak self] (event) in
+                switch event {
+                case .next:
+                    self?.showLoadBlurs()
+                    self?.segmentedControl.isEnabled = false
+                default: break
+                }
+            }.disposed(by: disposebag)
+        
+        //bind charts set
         viewModel.chartDataSet.asDriver().drive {
             $0.subscribe { [weak self] in
                 guard let dataSet = $0.element else { return }
                 self?.chartSet(dataSet)
+                self?.hideLoadBlurs()
+                self?.segmentedControl.isEnabled = true
             }
-        }.disposed(by: disposebag)
+            }.disposed(by: disposebag)
         
-
+        
+        //bind swipe
         viewModel.moveTo.asDriver().drive { (observableX) in
             observableX.subscribe({ [weak self] (event) in
                 guard let strongSelf = self else { return }
@@ -57,12 +81,10 @@ class Main: UIViewController {
                 let middle = Int(strongSelf.collectionView.bounds.width / 2 - 50 - 20)
                 strongSelf.collectionView.setContentOffset(CGPoint(x: x - middle, y: 0), animated: true)
             })
-        }.disposed(by: disposebag)
-        
+            }.disposed(by: disposebag)
     }
     
-    //MARK: private func
-    private func chartSet (_ dataSet: LineChartDataSet) {
+    private func chartSet(_ dataSet: LineChartDataSet) {
         let gradientColors = [ChartColorTemplates.colorFromString("#00ff0000").cgColor,
                               ChartColorTemplates.colorFromString("#ffff0000").cgColor]
         let gradient = CGGradient(colorsSpace: nil, colors: gradientColors as CFArray, locations: nil)!
@@ -74,7 +96,16 @@ class Main: UIViewController {
         chartView.animate(xAxisDuration: 0.4)
     }
     
-    private func setupChartView () {
+    private func setupUI() {
+        collectionView.register(UINib(nibName: "WeatherCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "cell")
+        collectionView.layer.cornerRadius = 10
+        setupChartView()
+        setupLoadBlurs()
+        showLoadBlurs()
+    }
+    
+    private func setupChartView() {
+        chartView.layer.cornerRadius = 10
         chartView.delegate = self
         chartView.chartDescription?.text = "Forecast"
         chartView.leftAxis.enabled = false
@@ -86,6 +117,50 @@ class Main: UIViewController {
         chartView.leftAxis.drawGridLinesEnabled = false
         chartView.leftAxis.labelPosition = .outsideChart
     }
+    
+    private func showLoadBlurs() {
+        blurs.forEach {
+            $0.alpha = 0
+            $0.isHidden = false
+        }
+        UIView.animate(withDuration: 0.2) { [weak self] in
+            self?.blurs.forEach {
+                $0.alpha = 1
+            }
+        }
+    }
+    
+    private func hideLoadBlurs() {
+        UIView.animate(withDuration: 0.2, animations: { [weak self] in
+            self?.blurs.forEach {
+                $0.alpha = 0
+            }
+        }) { [weak self] (_) in
+            self?.blurs.forEach {
+                $0.isHidden = true
+            }
+        }
+    }
+    
+    private func setupLoadBlurs() {
+        addBlur(to: collectionView)
+        addBlur(to: chartView)
+        blurs.forEach {
+            $0.isHidden = true
+        }
+    }
+    
+    private func addBlur(to view: UIView) {
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        blurEffectView.layer.cornerRadius = 10
+        blurs.append(blurEffectView)
+        view.addSubview(blurEffectView)
+        view.layoutSubviews()
+    }
+    
 }
 
 //MARK: ChartViewDelegate
