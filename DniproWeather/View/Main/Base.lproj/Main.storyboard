@@ -18,20 +18,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="glV-4C-Svf">
-                                <rect key="frame" x="56.5" y="623.5" width="262.5" height="34.5"/>
-                                <segments>
-                                    <segment title="24 Hours"/>
-                                    <segment title="7 Days"/>
-                                </segments>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </segmentedControl>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="djC-P1-91A" customClass="LineChartView" customModule="Charts">
                                 <rect key="frame" x="18.5" y="330" width="337.5" height="283.5"/>
                                 <color key="backgroundColor" red="0.0" green="0.70132797960000004" blue="0.63560593129999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Kis-0u-u3X">
-                                <rect key="frame" x="18.5" y="30" width="337.5" height="290"/>
+                                <rect key="frame" x="18" y="30" width="337.5" height="290"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="290" id="O5D-No-IwN"/>
@@ -44,9 +36,22 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wm5-Fa-lJL">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="glV-4C-Svf">
+                                <rect key="frame" x="56" y="623" width="262.5" height="34.5"/>
+                                <segments>
+                                    <segment title="24 Hours"/>
+                                    <segment title="7 Days"/>
+                                </segments>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.70132797960000004" blue="0.63560593129999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="Wm5-Fa-lJL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="0Es-f4-ddJ"/>
                             <constraint firstItem="djC-P1-91A" firstAttribute="top" secondItem="Kis-0u-u3X" secondAttribute="bottom" constant="10" id="1Rv-5G-wyu"/>
                             <constraint firstItem="Kis-0u-u3X" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="2ec-vC-mdZ"/>
                             <constraint firstItem="Kis-0u-u3X" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="4PJ-Qd-jKa"/>
@@ -56,8 +61,11 @@
                             <constraint firstItem="glV-4C-Svf" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.05" id="Tc2-hh-F1A"/>
                             <constraint firstItem="glV-4C-Svf" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="UX3-X4-9RE"/>
                             <constraint firstItem="djC-P1-91A" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Vzn-t1-3ua"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Wm5-Fa-lJL" secondAttribute="trailing" id="Yt2-1w-Cgo"/>
+                            <constraint firstAttribute="bottom" secondItem="Wm5-Fa-lJL" secondAttribute="bottom" id="iRf-aY-WkS"/>
                             <constraint firstItem="glV-4C-Svf" firstAttribute="top" secondItem="djC-P1-91A" secondAttribute="bottom" constant="10" id="lyk-IJ-6ZV"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="glV-4C-Svf" secondAttribute="bottom" constant="10" id="nBx-ia-cEz"/>
+                            <constraint firstItem="Wm5-Fa-lJL" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="prL-xS-Wy3"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -65,11 +73,13 @@
                         <outlet property="chartView" destination="djC-P1-91A" id="RKu-KW-jjh"/>
                         <outlet property="collectionLayout" destination="CSb-Ga-Phv" id="sol-eh-t35"/>
                         <outlet property="collectionView" destination="Kis-0u-u3X" id="XCM-QL-UKY"/>
+                        <outlet property="reloadView" destination="Wm5-Fa-lJL" id="iJb-ja-sQl"/>
                         <outlet property="segmentedControl" destination="glV-4C-Svf" id="164-oI-JfB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="96.799999999999997" y="33.733133433283363"/>
         </scene>
     </scenes>
 </document>

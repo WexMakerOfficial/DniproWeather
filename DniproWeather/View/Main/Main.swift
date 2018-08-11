@@ -18,6 +18,7 @@ class Main: UIViewController {
     @IBOutlet weak var chartView: LineChartView!
     @IBOutlet weak var collectionLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var reloadView: UIView!
     
     
     //MARK: var
@@ -25,9 +26,6 @@ class Main: UIViewController {
     
     //MARK: private let
     private let disposebag = DisposeBag()
-    
-    //MARK: private var
-    private var blurs: [UIVisualEffectView] = []
     
     //MARK: life cycle
     override func viewDidLoad() {
@@ -119,35 +117,24 @@ class Main: UIViewController {
     }
     
     private func showLoadBlurs() {
-        blurs.forEach {
-            $0.alpha = 0
-            $0.isHidden = false
-        }
+        reloadView.alpha = 0
+        reloadView.isHidden = false
         UIView.animate(withDuration: 0.2) { [weak self] in
-            self?.blurs.forEach {
-                $0.alpha = 1
-            }
+            self?.reloadView.alpha = 1
         }
     }
     
     private func hideLoadBlurs() {
         UIView.animate(withDuration: 0.2, animations: { [weak self] in
-            self?.blurs.forEach {
-                $0.alpha = 0
-            }
+            self?.reloadView.alpha = 0
         }) { [weak self] (_) in
-            self?.blurs.forEach {
-                $0.isHidden = true
-            }
+            self?.reloadView.isHidden = true
         }
     }
     
     private func setupLoadBlurs() {
-        addBlur(to: collectionView)
-        addBlur(to: chartView)
-        blurs.forEach {
-            $0.isHidden = true
-        }
+        addBlur(to: reloadView)
+        reloadView.isHidden = true
     }
     
     private func addBlur(to view: UIView) {
@@ -155,10 +142,7 @@ class Main: UIViewController {
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = view.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        blurEffectView.layer.cornerRadius = 10
-        blurs.append(blurEffectView)
         view.addSubview(blurEffectView)
-        view.layoutSubviews()
     }
     
 }
