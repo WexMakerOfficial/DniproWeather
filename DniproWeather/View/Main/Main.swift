@@ -13,20 +13,23 @@ import RxCocoa
 
 class Main: UIViewController {
 
+    //MARK: @IBOutlet
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var chartView: LineChartView!
     @IBOutlet weak var collectionLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
+    //MARK: var
     var viewModel = MainViewModel()
     
+    //MARK: let
     let disposebag = DisposeBag()
     
-    
+    //MARK: life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionLayout.itemSize = CGSize(width: 100, height: collectionView.bounds.size.height * 0.8)
+//        collectionLayout.itemSize = CGSize(width: 100, height: collectionView.bounds.size.height * 0.8)
         collectionView.register(UINib(nibName: "WeatherCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "cell")
         setupChartView()
         viewModel.cellArray.asDriver().drive(collectionView.rx.items(cellIdentifier: "cell")) {_, viewModel, cell in
@@ -58,6 +61,7 @@ class Main: UIViewController {
         
     }
     
+    //MARK: private func
     private func chartSet (_ dataSet: LineChartDataSet) {
         let gradientColors = [ChartColorTemplates.colorFromString("#00ff0000").cgColor,
                               ChartColorTemplates.colorFromString("#ffff0000").cgColor]
@@ -84,6 +88,7 @@ class Main: UIViewController {
     }
 }
 
+//MARK: ChartViewDelegate
 extension Main: ChartViewDelegate {
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
         viewModel.selectEntry(entry)

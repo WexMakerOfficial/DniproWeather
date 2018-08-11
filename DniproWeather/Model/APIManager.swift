@@ -42,15 +42,27 @@ class APIManager {
         }
     }
     
-    func getForecast (_ type: ForecastType, completion: @escaping (_ json: JSON) -> ()) {
+    func getForecast (_ type: ForecastType, completion: @escaping (_ json: JSON?) -> ()) {
         let route = Route.currentType(type)
         _ = URLSession.shared.rx
             .data(request: route.urlRequest)
             .distinctUntilChanged()
             .subscribe {
-                guard let element = $0.element else { return }
-                guard let json = try? JSON(data: element) else { return }
-                completion(json)
+                switch $0.event {
+                case .next(let element):
+                    do {
+                        let json = try JSON(data: element)
+                        print(json)
+                        completion(json)
+                    } catch {
+                        completion(nil)
+                    }
+                case .error(let error):
+                    print(error)
+                    completion(nil)
+                default:
+                    break
+                }
             }
     }
     

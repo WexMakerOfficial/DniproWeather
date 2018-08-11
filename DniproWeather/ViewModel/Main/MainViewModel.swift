@@ -13,16 +13,22 @@ import Charts
 
 class MainViewModel {
     
+    //MARK: private var
     private var weatherManager = WeatherManager()
-    var cellArray = BehaviorRelay<[WeatherCVCellViewModel]>(value: [])
     private var forecast : BehaviorRelay<[Weather]> = BehaviorRelay(value: [])
-    var forecastType = BehaviorRelay<ForecastType>(value: .days)
+
+    //MARK: var
+    var cellArray = BehaviorRelay<[WeatherCVCellViewModel]>(value: [])
+    var forecastType = BehaviorRelay<ForecastType>(value: .hours)
     var chartDataSet = BehaviorRelay<LineChartDataSet>(value: LineChartDataSet(values: [], label: "temp"))
     var moveTo = BehaviorRelay<Int>(value: 0)
     
+    //MARK: let
     let disposeBag = DisposeBag()
     
+    //MARK: init
     init() {
+        
         self.forecast
             .distinctUntilChanged()
             .subscribe { [weak self] (tempForecast) in
@@ -31,11 +37,6 @@ class MainViewModel {
                 strongSelf.chartDataSet.accept(strongSelf.getChartDataSet(with: realForecast))
             }
             .disposed(by: disposeBag)
-    
-        self.weatherManager.getWeatherListFromAPI(with: self.forecastType.value) { [weak self] (forecast) in
-            guard let strongSelf = self else { return }
-            strongSelf.forecast.accept(forecast)
-        }
         
         self.forecastType
             .distinctUntilChanged()
@@ -47,13 +48,15 @@ class MainViewModel {
                 })
             }
             .disposed(by: disposeBag)
+        
     }
     
+    //MARK: funcs
     func selectEntry (_ entry: ChartDataEntry) {
         moveTo.accept(chartDataSet.value.entryIndex(entry: entry) * 100)
     }
     
-    //MARK: private func
+    //MARK: private funcs
     private func getCells(with weathers: [Weather], type: ForecastType) -> [WeatherCVCellViewModel] {
         var forecast = [WeatherCVCellViewModel]()
         for weather in weathers {

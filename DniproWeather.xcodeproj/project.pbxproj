@@ -18,6 +18,7 @@
 		1B9CF7DE20D457DC006CAFAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B9CF7DD20D457DC006CAFAF /* Assets.xcassets */; };
 		1B9CF7E120D457DC006CAFAF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B9CF7DF20D457DC006CAFAF /* LaunchScreen.storyboard */; };
 		1B9CF7EC20D457DC006CAFAF /* DniproWeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9CF7EB20D457DC006CAFAF /* DniproWeatherTests.swift */; };
+		1BB7DE2F21178966007DE7E6 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB7DE2E21178966007DE7E6 /* DatabaseManager.swift */; };
 		1BBBE7B720D4677400CC1D40 /* WeatherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBBE7B520D4677400CC1D40 /* WeatherCollectionViewCell.swift */; };
 		1BBBE7B820D4677400CC1D40 /* WeatherCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BBBE7B620D4677400CC1D40 /* WeatherCollectionViewCell.xib */; };
 		1BBC665220DFC879004595B8 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBC665120DFC879004595B8 /* APIManager.swift */; };
@@ -51,6 +52,7 @@
 		1B9CF7E720D457DC006CAFAF /* DniproWeatherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DniproWeatherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B9CF7EB20D457DC006CAFAF /* DniproWeatherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DniproWeatherTests.swift; sourceTree = "<group>"; };
 		1B9CF7ED20D457DC006CAFAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1BB7DE2E21178966007DE7E6 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		1BBBE7B520D4677400CC1D40 /* WeatherCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCollectionViewCell.swift; sourceTree = "<group>"; };
 		1BBBE7B620D4677400CC1D40 /* WeatherCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherCollectionViewCell.xib; sourceTree = "<group>"; };
 		1BBC665120DFC879004595B8 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				1B04596B20D6B8CD00131EE5 /* Structs */,
 				1B04596E20D6C29600131EE5 /* WeatherManager.swift */,
 				1BBC665120DFC879004595B8 /* APIManager.swift */,
+				1BB7DE2E21178966007DE7E6 /* DatabaseManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -343,24 +346,18 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-DniproWeather/Pods-DniproWeather-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
-				"${BUILT_PRODUCTS_DIR}/ChartsRealm/ChartsRealm.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/RxAlamofire/RxAlamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS11.0/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChartsRealm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAlamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
@@ -419,6 +416,7 @@
 			files = (
 				1B04596D20D6B93800131EE5 /* Weather.swift in Sources */,
 				1B04597420D6CA3B00131EE5 /* WeatherCVCellViewModel.swift in Sources */,
+				1BB7DE2F21178966007DE7E6 /* DatabaseManager.swift in Sources */,
 				1BBBE7B720D4677400CC1D40 /* WeatherCollectionViewCell.swift in Sources */,
 				1BBC665220DFC879004595B8 /* APIManager.swift in Sources */,
 				1B04597120D6C64A00131EE5 /* ForecastType.swift in Sources */,

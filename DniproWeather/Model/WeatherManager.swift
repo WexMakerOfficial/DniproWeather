@@ -12,46 +12,56 @@ import SwiftyJSON
 
 class WeatherManager {
     
-    private var realm: Realm?
+    //MARK: var
     private var apiManager = APIManager()
+    private var databaseManager: DatabaseManager? = DatabaseManager()
     
+    //MARK: init
     init() {
-        self.realm = try? Realm()
     }
     
     //MARK: public funcs
     func getWeatherListFromAPI (with type: ForecastType ,completeion: @escaping (_ forecast: [Weather]) -> Void) {
         apiManager.getForecast(type) { [weak self] (json) in
             guard let strongSelf = self else { return }
-            print(json)
-            switch type {
-            case .hours:
-                completeion(strongSelf.getDayForecast(json))
-            case .days:
-                completeion(strongSelf.getWeekForecast(json))
+            strongSelf.getForecast(by: type, and: json) { forecast in
+                completeion(forecast)
             }
         }
     }
     
-    func getWeatherFromDB () -> [Weather] {
-        if let array = realm?.objects(Weather.self) {
-            return array.reversed()
+    
+    //MARK: private funcs
+    
+    private func getForecast(by type: ForecastType, and json: JSON?, completion: @escaping ([Weather]) -> ()) {
+        if let json = json {
+            var forecast: [Weather] = []
+            switch type {
+            case .days:
+                forecast = getWeekForecast(from: json)
+            case .hours:
+                forecast = getDayForecast(from: json)
+            }
+            if let manager = databaseManager {
+                manager.update(forecast, by: type)
+            }
+            completion(forecast)
+        } else if let manager = databaseManager {
+            manager.getForecast(by: type) { (forecast) in
+                completion(forecast)
+            }
         } else {
-            return []
+            completion([])
         }
     }
     
-    //MARK: private funcs
-    private func getFromApi (_ type: ForecastType) -> [Weather] {
-        return []
-    }
-    
-    private func getDayForecast(_ json: JSON) -> [Weather] {
+    private func getDayForecast(from json: JSON) -> [Weather] {
         var weathers = [Weather]()
         guard let weatherList = json["list"].array else { return [] }
         for weather in weatherList {
             let main = weather["main"]
             let currentWeather = Weather()
+            currentWeather.type = ForecastType.hours.hashValue
             if let tempMin = main["temp_min"].int {
                 currentWeather.tempMin = tempMin
             }
@@ -76,13 +86,14 @@ class WeatherManager {
         return weathers
     }
     
-    private func getWeekForecast(_ json: JSON) -> [Weather] {
+    private func getWeekForecast(from json: JSON) -> [Weather] {
         var weathers = [Weather]()
         guard let weatherList = json["forecast"]["forecastday"].array else {
             return []
         }
         for weather in weatherList {
             let currentWeather = Weather()
+            currentWeather.type = ForecastType.days.hashValue
             if let unixTime = weather["date_epoch"].double {
                 currentWeather.dateTimeUnix = unixTime
             }
