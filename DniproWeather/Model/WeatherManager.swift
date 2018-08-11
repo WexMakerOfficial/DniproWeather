@@ -10,7 +10,11 @@ import Foundation
 import RealmSwift
 import SwiftyJSON
 
-class WeatherManager {
+protocol WeatherManagerPrototype {
+    func getWeatherList(with type: ForecastType, completion: @escaping (_ weatherList: [Weather]) -> ())
+}
+
+class WeatherManager: WeatherManagerPrototype {
     
     //MARK: var
     private var apiManager = APIManager()
@@ -20,19 +24,18 @@ class WeatherManager {
     init() {
     }
     
-    //MARK: public funcs
-    func getWeatherListFromAPI (with type: ForecastType ,completeion: @escaping (_ forecast: [Weather]) -> Void) {
+    //MARK: protocol funcs
+    func getWeatherList(with type: ForecastType, completion: @escaping ([Weather]) -> ()) {
         apiManager.getForecast(type) { [weak self] (json) in
             guard let strongSelf = self else { return }
             strongSelf.getForecast(by: type, and: json) { forecast in
-                completeion(forecast)
+                completion(forecast)
             }
         }
     }
     
     
     //MARK: private funcs
-    
     private func getForecast(by type: ForecastType, and json: JSON?, completion: @escaping ([Weather]) -> ()) {
         if let json = json {
             var forecast: [Weather] = []

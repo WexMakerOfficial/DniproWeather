@@ -21,7 +21,7 @@ class WeatherCollectionViewCell: UICollectionViewCell {
     
     let disposeBag = DisposeBag()
     
-    weak var viewModel: WeatherCVCellViewModel! {
+    var viewModel: WeatherCellViewModelPrototype! {
         didSet {
             viewModel.dateTime.bind(to: dateTimeLabel.rx.text).disposed(by: disposeBag)
             viewModel.averageTemp.bind(to: tempLabel.rx.text).disposed(by: disposeBag)

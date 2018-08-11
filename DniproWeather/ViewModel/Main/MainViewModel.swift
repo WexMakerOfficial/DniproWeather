@@ -11,25 +11,44 @@ import RxSwift
 import RxCocoa
 import Charts
 
-class MainViewModel {
-    
-    //MARK: private var
-    private var weatherManager = WeatherManager()
-    private var forecast : BehaviorRelay<[Weather]> = BehaviorRelay(value: [])
 
-    //MARK: var
-    var cellArray = BehaviorRelay<[WeatherCVCellViewModel]>(value: [])
+protocol WeatherViewModelPrototype {
+    var cellArray: BehaviorRelay<[WeatherCellViewModelPrototype]> { get }
+    var forecastType: BehaviorRelay<ForecastType> { get }
+    var chartDataSet: BehaviorRelay<LineChartDataSet> { get }
+    var moveTo: BehaviorRelay<Int> { get }
+    func selectEntry (_ entry: ChartDataEntry)
+}
+
+class MainViewModel: WeatherViewModelPrototype {
+
+    //MARK: protocol var
+    var cellArray = BehaviorRelay<[WeatherCellViewModelPrototype]>(value: [])
     var forecastType = BehaviorRelay<ForecastType>(value: .hours)
     var chartDataSet = BehaviorRelay<LineChartDataSet>(value: LineChartDataSet(values: [], label: "temp"))
     var moveTo = BehaviorRelay<Int>(value: 0)
     
-    //MARK: let
-    let disposeBag = DisposeBag()
+    //MARK: private var
+    private var weatherManager: WeatherManagerPrototype
+    private var forecast : BehaviorRelay<[Weather]> = BehaviorRelay(value: [])
+    
+    //MARK: private let
+    private let disposeBag = DisposeBag()
     
     //MARK: init
-    init() {
-        
-        self.forecast
+    init(_ manager: WeatherManagerPrototype) {
+        weatherManager = manager
+        bind()
+    }
+    
+    //MARK: protocol funcs
+    func selectEntry (_ entry: ChartDataEntry) {
+        moveTo.accept(chartDataSet.value.entryIndex(entry: entry) * 100)
+    }
+    
+    //MARK: private funcs
+    private func bind() {
+        forecast
             .distinctUntilChanged()
             .subscribe { [weak self] (tempForecast) in
                 guard let realForecast = tempForecast.element, let strongSelf = self else { return }
@@ -38,29 +57,22 @@ class MainViewModel {
             }
             .disposed(by: disposeBag)
         
-        self.forecastType
+        forecastType
             .distinctUntilChanged()
             .subscribe { [weak self] (type) in
                 guard let strongSelf = self else { return }
                 guard let currentType = type.element else { return }
-                strongSelf.weatherManager.getWeatherListFromAPI(with: currentType, completeion: { (forecast) in
+                strongSelf.weatherManager.getWeatherList(with: currentType, completion: { (forecast) in
                     strongSelf.forecast.accept(forecast)
                 })
             }
             .disposed(by: disposeBag)
-        
     }
     
-    //MARK: funcs
-    func selectEntry (_ entry: ChartDataEntry) {
-        moveTo.accept(chartDataSet.value.entryIndex(entry: entry) * 100)
-    }
-    
-    //MARK: private funcs
     private func getCells(with weathers: [Weather], type: ForecastType) -> [WeatherCVCellViewModel] {
         var forecast = [WeatherCVCellViewModel]()
         for weather in weathers {
-            forecast.append(WeatherCVCellViewModel(weather, type: type))
+            forecast.append(WeatherCVCellViewModel(WeatherCellModel(weather: weather, type: type)))
         }
         return forecast
     }

@@ -9,7 +9,15 @@
 import Foundation
 import RxSwift
 
-class WeatherCVCellViewModel {
+protocol WeatherCellViewModelPrototype {
+    var dateTime: BehaviorSubject<String> { get }
+    var averageTemp: BehaviorSubject<String> { get }
+    var minMaxTemp: BehaviorSubject<String> { get }
+    var windSpeed: BehaviorSubject<String> { get }
+    var humidity: BehaviorSubject<String> { get }
+}
+
+class WeatherCVCellViewModel: WeatherCellViewModelPrototype {
     
     var dateTime    = BehaviorSubject<String>(value: "")
     var averageTemp = BehaviorSubject<String>(value: "")
@@ -19,10 +27,10 @@ class WeatherCVCellViewModel {
     
     private let dispouseBag = DisposeBag()
     
-    init(_ weather: Weather, type: ForecastType) {
+    init(_ model: WeatherPrototype) {
         let dateFormater = DateFormatter()
         dateFormater.timeZone = TimeZone(secondsFromGMT: 10800)
-        switch type {
+        switch model.type {
         case .days:
             dateFormater.dateStyle = .short
             dateFormater.timeStyle = .none
@@ -32,12 +40,12 @@ class WeatherCVCellViewModel {
             dateFormater.timeStyle = .short
             break
         }
-        let date = Date(timeIntervalSince1970: weather.dateTimeUnix)
+        let date = Date(timeIntervalSince1970: model.weather.dateTimeUnix)
         dateTime.onNext(dateFormater.string(from: date))
-        averageTemp.onNext("\(weather.temp) ºC")
-        minMaxTemp.onNext("\(weather.tempMin) ~ \(weather.tempMax) ºC")
-        windSpeed.onNext("\(weather.windSpeed) m/s")
-        humidity.onNext("\(weather.humidity)%")
+        averageTemp.onNext("\(model.weather.temp) ºC")
+        minMaxTemp.onNext("\(model.weather.tempMin) ~ \(model.weather.tempMax) ºC")
+        windSpeed.onNext("\(model.weather.windSpeed) m/s")
+        humidity.onNext("\(model.weather.humidity)%")
     }
     
 }

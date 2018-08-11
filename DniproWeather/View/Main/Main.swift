@@ -22,7 +22,7 @@ class Main: UIViewController {
     
     
     //MARK: var
-    var viewModel = MainViewModel()
+    var viewModel: WeatherViewModelPrototype = MainViewModel(WeatherManager())
     
     //MARK: private let
     private let disposebag = DisposeBag()

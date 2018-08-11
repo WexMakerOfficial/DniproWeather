@@ -44,7 +44,11 @@ class APIManager {
     
     func getForecast (_ type: ForecastType, completion: @escaping (_ json: JSON?) -> ()) {
         let route = Route.currentType(type)
-        _ = URLSession.shared.rx
+        let sessionConfig = URLSessionConfiguration.default
+        sessionConfig.timeoutIntervalForRequest = 5
+        sessionConfig.timeoutIntervalForResource = 10
+        let session = URLSession(configuration: sessionConfig)
+        _ = session.rx
             .data(request: route.urlRequest)
             .distinctUntilChanged()
             .subscribe {

@@ -12,6 +12,7 @@
 		1B04597120D6C64A00131EE5 /* ForecastType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B04597020D6C64A00131EE5 /* ForecastType.swift */; };
 		1B04597420D6CA3B00131EE5 /* WeatherCVCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B04597320D6CA3B00131EE5 /* WeatherCVCellViewModel.swift */; };
 		1B04597620D7D00700131EE5 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B04597520D7D00700131EE5 /* MainViewModel.swift */; };
+		1B2599DE211F852D0010612D /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2599DD211F852D0010612D /* WeatherModel.swift */; };
 		1B9CF7D720D457D8006CAFAF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9CF7D620D457D8006CAFAF /* AppDelegate.swift */; };
 		1B9CF7D920D457D8006CAFAF /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9CF7D820D457D8006CAFAF /* Main.swift */; };
 		1B9CF7DC20D457D8006CAFAF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B9CF7DA20D457D8006CAFAF /* Main.storyboard */; };
@@ -42,6 +43,7 @@
 		1B04597020D6C64A00131EE5 /* ForecastType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastType.swift; sourceTree = "<group>"; };
 		1B04597320D6CA3B00131EE5 /* WeatherCVCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCVCellViewModel.swift; sourceTree = "<group>"; };
 		1B04597520D7D00700131EE5 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		1B2599DD211F852D0010612D /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		1B9CF7D320D457D8006CAFAF /* DniproWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DniproWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B9CF7D620D457D8006CAFAF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1B9CF7D820D457D8006CAFAF /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				1B04596E20D6C29600131EE5 /* WeatherManager.swift */,
 				1BBC665120DFC879004595B8 /* APIManager.swift */,
 				1BB7DE2E21178966007DE7E6 /* DatabaseManager.swift */,
+				1B2599DD211F852D0010612D /* WeatherModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -424,6 +427,7 @@
 				1B9CF7D920D457D8006CAFAF /* Main.swift in Sources */,
 				1B9CF7D720D457D8006CAFAF /* AppDelegate.swift in Sources */,
 				1B04597620D7D00700131EE5 /* MainViewModel.swift in Sources */,
+				1B2599DE211F852D0010612D /* WeatherModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -588,7 +592,10 @@
 				DEVELOPMENT_TEAM = MFVF92WP4G;
 				INFOPLIST_FILE = "$(SRCROOT)/DniproWeather/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wexMaker.DniproWeather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -605,7 +612,10 @@
 				DEVELOPMENT_TEAM = MFVF92WP4G;
 				INFOPLIST_FILE = "$(SRCROOT)/DniproWeather/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wexMaker.DniproWeather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -622,7 +632,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MFVF92WP4G;
 				INFOPLIST_FILE = DniproWeatherTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wexMaker.DniproWeatherTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -640,7 +654,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MFVF92WP4G;
 				INFOPLIST_FILE = DniproWeatherTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wexMaker.DniproWeatherTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
